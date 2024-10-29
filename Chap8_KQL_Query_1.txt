@@ -1,0 +1,4 @@
+SecurityEvent
+| where EventID == 4625 and LogonType == 3
+| summarize FailedAttempts = count() by Computer, Account, IpAddress
+| where FailedAttempts >= 3

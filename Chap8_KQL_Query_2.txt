@@ -1,0 +1,5 @@
+SecurityEvent
+| where EventID == 4625 and LogonType == 3
+| where Computer != "1.2.3.4"  // Exclude attempts to this IP address
+| summarize FailedAttempts = count() by Computer, Account, IpAddress
+| where FailedAttempts >= 3  // Detects failed attempts on all other IPs
