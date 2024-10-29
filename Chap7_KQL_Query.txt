@@ -1,0 +1,8 @@
+let lookback = 2d; 
+ SecurityEvent 
+ | where TimeGenerated >= ago(lookback) 
+ | where EventID == 4688 and Process =~ "powershell.exe"
+ | extend PwshParam = trim(@"[^/\\]*powershell(.exe)+" , CommandLine) 
+ | project TimeGenerated, Computer, SubjectUserName, PwshParam 
+ | summarize min(TimeGenerated), count() by Computer, SubjectUserName, PwshParam 
+ | order by count_ desc nulls last

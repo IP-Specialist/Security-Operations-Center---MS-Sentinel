@@ -1,0 +1,3 @@
+net user theusernametoadd /add
+net user theusernametoadd ThePassword1!
+net localgroup administrators theusernametoadd /add

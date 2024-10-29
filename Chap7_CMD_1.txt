@@ -1,0 +1,4 @@
+cd \
+mkdir temp
+cd temp
+REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "SOC Test" /t REG_SZ /F /D "C:\temp\startup.bat"
